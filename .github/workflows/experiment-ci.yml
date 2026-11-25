@@ -1,0 +1,19 @@
+name: Experiment CI - go test
+
+on:
+  push:
+    branches:
+      - edidada/master
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: 'stable'
+      # Same command as the upstream Makefile `test` target.
+      - name: make test
+        run: make test
